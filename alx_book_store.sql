@@ -15,18 +15,21 @@ CREATE TABLE IF NOT EXISTS Books (
 );
 CREATE TABLE IF NOT EXISTS Customers (
     customer_id INT PRIMARY KEY AUTOINCREMENT,
-    customer_name VARCHAR(100) NOT NULL,
+    customer_name VARCHAR(215) NOT NULL,
     email VARCHAR(215) NOT NULL UNIQUE,
     address TEXT
 );
 CREATE TABLE IF NOT EXISTS Orders (
     order_id INT PRIMARY KEY AUTOINCREMENT,
-    customer_id INT AUTOINCREMENT FOREIGN KEY REFERENCES Customers(customer_id),
-    order_date DATE NOT NULL
+    customer_id INT AUTOINCREMENT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 CREATE TABLE IF NOT EXISTS Order_Details (
     orderdetailid INT PRIMARY KEY AUTOINCREMENT,
-    order_id INT AUTOINCREMENT FOREIGN KEY REFERENCES Orders(order_id),
-    book_id INT AUTOINCREMENT FOREIGN KEY REFERENCES Books(book_id),
-    quantity DOUBLE NOT NULL
+    order_id INT AUTOINCREMENT,
+    book_id INT AUTOINCREMENT,
+    quantity DOUBLE,
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
