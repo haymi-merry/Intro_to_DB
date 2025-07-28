@@ -26,8 +26,11 @@ def create_database():
             print("Database created successfully")
         else:
             print("Failed to connect to the database")
+
     except Error as e:
         print(f"Error While connceting to mSQL: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
     finally:
         if connection.is_connected():
             cursor.close()
