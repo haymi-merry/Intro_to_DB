@@ -31,6 +31,8 @@ def create_database():
         print(f"Error While connceting to mSQL: {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
     finally:
         if connection.is_connected():
             cursor.close()
